@@ -1,8 +1,9 @@
 ### Run docker image directly
 ```
-docker run -d -p 8080:80 \   
--v $(pwd)/data:/var/www/rockin.local \   
--v $(pwd)/conf.d:/etc/nginx/conf.d ubuntu_nginx
+docker run -d -p 8080:80 \  
+-v $(pwd)/data:/var/www/rockin.local \  
+-v $(pwd)/conf.d:/etc/nginx/conf.d \  
+ubuntu_nginx
 ```
 
 ### Run via docker compose
