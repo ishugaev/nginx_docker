@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 ENV container=docker
 
 RUN apt-get update && \
-    apt-get install -y nginx nano vim util-linux less && \
+    apt-get install -y nginx php nano vim util-linux less && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
