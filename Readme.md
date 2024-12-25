@@ -1,13 +1,17 @@
 ### Run docker image directly
 ```
 docker run -d -p 8080:80 \  
--v $(pwd)/data:/var/www/rockin.local \  
+-v $(pwd)/data:/var/www/yoursite \  
 -v $(pwd)/conf.d:/etc/nginx/conf.d \  
 ubuntu_nginx
 ```
-
-### Run via docker compose
-```compose up```
+### Checking load balancers
+```
+docker exec -it yourcontainerid /bin/bash
+cd /var/www/yoursite/proxy
+php -S 127.0.0.1:8001 & php -S 127.0.0.1:8002 & php -S 127.0.0.1:8003
+```
+Navigate to /roundrobin, /lessconn, /ip_hash, /weighted endpoints to check
 
 ### Useful commands
 ```nginx -s reload``` - reload nginx  
