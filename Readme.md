@@ -1,6 +1,6 @@
 ### Run docker image directly
 ```
-docker run -d -p 8080:80 \  
+docker run -d -p 8080:80 -p 8081:443 \  
 -v $(pwd)/data:/var/www/yoursite \  
 -v $(pwd)/conf.d:/etc/nginx/conf.d \  
 ubuntu_nginx
