@@ -1,5 +1,10 @@
 ### Run docker image directly
 ```
+docker run -d -p 8080:80 -p 8081:443 docker_nginx
+```
+
+During the development it might be helpful to attach volumes
+```
 docker run -d -p 8080:80 -p 8081:443 \  
 -v $(pwd)/data:/var/www/yoursite \  
 -v $(pwd)/conf.d:/etc/nginx/conf.d \  
@@ -9,7 +14,7 @@ ubuntu_nginx
 ```
 docker exec -it yourcontainerid /bin/bash
 cd /var/www/yoursite/proxy
-php -S 127.0.0.1:8001 & php -S 127.0.0.1:8002 & php -S 127.0.0.1:8003
+sh run_servers.sh
 ```
 Navigate to /roundrobin, /lessconn, /ip_hash, /weighted endpoints to check
 

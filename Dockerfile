@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM nginx:latest
 
 ENV container=docker
 ENV DEBIAN_FRONTEND=noninteractive
@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
 RUN apt-get update && \
-    apt-get install -y nginx php nano vim util-linux less && \
+    apt-get install -y php nano vim util-linux less && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -18,8 +18,10 @@ RUN mkdir -p /etc/nginx/ssl && \
     -subj "/C=US/ST=State/L=City/O=Organization/OU=Department/CN=localhost"
 
 RUN htpasswd -cb /etc/nginx/passwords admin changeme
+RUN rm -f /etc/nginx/conf.d/default.conf
 
-RUN cd /etc/nginx/sites-enabled && unlink default
+COPY ./conf.d/ /etc/nginx/conf.d/
+COPY ./data/ /var/www/yoursite/
 
 EXPOSE 80 443
 
